@@ -12,31 +12,35 @@ namespace recipes_api.Controllers;
 [ApiController]
 [Route("user")]
 public class UserController : ControllerBase
-{    
+{
     public readonly IUserService _service;
-    
+
     public UserController(IUserService service)
     {
-        this._service = service;        
+        this._service = service;
     }
 
     // 6 - Sua aplicação deve ter o endpoint GET /user/:email
     [HttpGet("{email}", Name = "GetUser")]
     public IActionResult Get(string email)
-    {                
-        throw new NotImplementedException();
+    {
+        if (_service.GetUser(email) == null)
+        {
+            return NotFound();
+        }
+        return Ok(_service.GetUser(email));
     }
 
     // 7 - Sua aplicação deve ter o endpoint POST /user
     [HttpPost]
-    public IActionResult Create([FromBody]User user)
+    public IActionResult Create([FromBody] User user)
     {
         throw new NotImplementedException();
     }
 
     // "8 - Sua aplicação deve ter o endpoint PUT /user
     [HttpPut("{email}")]
-    public IActionResult Update(string email, [FromBody]User user)
+    public IActionResult Update(string email, [FromBody] User user)
     {
         throw new NotImplementedException();
     }
@@ -46,5 +50,5 @@ public class UserController : ControllerBase
     public IActionResult Delete(string email)
     {
         throw new NotImplementedException();
-    } 
+    }
 }

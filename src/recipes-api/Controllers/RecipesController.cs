@@ -65,7 +65,6 @@ public class RecipesController : ControllerBase
     public IActionResult Update(string name, [FromBody] Recipe recipe)
     {
 
-
         if (name == null || !_service.RecipeExists(recipe.Name))
         {
             return BadRequest();
@@ -74,13 +73,18 @@ public class RecipesController : ControllerBase
 
         return NoContent();
 
-
     }
 
     // 5 - Sua aplicação deve ter o endpoint DEL /recipe
     [HttpDelete("{name}")]
     public IActionResult Delete(string name)
     {
-        throw new NotImplementedException();
+        if (name == null || !_service.RecipeExists(name))
+        {
+            return NotFound();
+        }
+        _service.DeleteRecipe(name);
+
+        return NoContent();
     }
 }

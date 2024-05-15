@@ -35,7 +35,6 @@ public class UserController : ControllerBase
     [HttpPost]
     public IActionResult Create([FromBody] User user)
     {
-
         _service.AddUser(user);
 
         return StatusCode(201, user);
@@ -45,7 +44,23 @@ public class UserController : ControllerBase
     [HttpPut("{email}")]
     public IActionResult Update(string email, [FromBody] User user)
     {
-        throw new NotImplementedException();
+        if (user == null)
+        {
+            return BadRequest();
+        }
+        var findUser = _service.UserExists(email);
+        if (!findUser)
+        {
+            return NotFound();
+        }
+        if (user.Email != email)
+        {
+            return BadRequest();
+        }
+        _service.UpdateUser(user);
+
+        return StatusCode(200, user);
+
     }
 
     // 9 - Sua aplicação deve ter o endpoint DEL /user

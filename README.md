@@ -6,8 +6,6 @@
 Uma empresa desenvolveu um aplicativo de Receitas que está totalmente funcional 😉.
 Agora, ela quer expandir esse negócio, criando uma **api de receitas** que retorna todas as receitas disponíveis, adiciona, remove e atualiza as mesmas. Além disso, a empresa desejou que fosse possível cadastrar, remover, consultar e atualizar dados de usuários do app e permitir o cadastro e consulta de comentários nessas receitas.
 
-Você recebeu a atribuição de desenvolver essa api de receitas com ASP.NET. Todos os services com os modelos de dados já estão disponíveis.
-
 </details>
   
 <details>
